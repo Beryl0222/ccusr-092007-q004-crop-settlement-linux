@@ -1,8 +1,101 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "record_id": "sample-004",
   "domain": "crop_settlement",
   "occurred_at": "2026-09-20T09:00:00+08:00",
-  "revision": 1,
-  "source": "业务样例"
+  "revision": 2,
+  "source": "业务样例",
+  "parcels": [
+    {
+      "parcel_id": "P-101",
+      "farmer_id": "F-01",
+      "village": "东湾村",
+      "area_mu": "6.5"
+    },
+    {
+      "parcel_id": "P-102",
+      "farmer_id": "F-02",
+      "village": "西洼村",
+      "area_mu": "11.0"
+    }
+  ],
+  "crop_batches": [
+    {
+      "batch_id": "B-2026-ZHIMA-01",
+      "parcel_id": "P-101",
+      "crop": "sesame"
+    },
+    {
+      "batch_id": "B-2026-HUASHENG-01",
+      "parcel_id": "P-102",
+      "crop": "peanut"
+    }
+  ],
+  "commitments": [
+    {
+      "commitment_id": "C-0001",
+      "farmer_id": "F-01",
+      "workshop_id": "W-01",
+      "batch_id": "B-2026-ZHIMA-01",
+      "created_at": "2026-08-30T10:00:00+08:00",
+      "terms": {
+        "committed_quantity_kg": "800",
+        "floor_price_per_kg": "12.40",
+        "payment_terms_days": 7,
+        "delivery_window": {"opens_on": "2026-09-15", "closes_on": "2026-10-10"},
+        "allowed_destinations": ["workshop", "alternative_buyer", "feed"],
+        "grading_rule": {
+          "moisture_threshold_pct": "9",
+          "moisture_deduction_pct_per_point": "1",
+          "impurity_threshold_pct": "2",
+          "impurity_deduction_pct_per_point": "1",
+          "bands": [
+            {"grade": "G1", "max_moisture_pct": "8", "max_impurity_pct": "1", "price_delta_per_kg": "0.60"},
+            {"grade": "G2", "max_moisture_pct": "9", "max_impurity_pct": "2", "price_delta_per_kg": "0"},
+            {"grade": "G3", "max_moisture_pct": "10", "max_impurity_pct": "3", "price_delta_per_kg": "-0.50"},
+            {"grade": "OFF", "max_moisture_pct": "999", "max_impurity_pct": "999", "price_delta_per_kg": "-1.20"}
+          ]
+        }
+      },
+      "consent": {
+        "farmer_id": "F-01",
+        "consented": true,
+        "at": "2026-08-30T10:00:00+08:00",
+        "channel": "纸质合同"
+      },
+      "prepayment": {"amount": "3000.00", "paid_at": "2026-09-01T09:00:00+08:00"}
+    },
+    {
+      "commitment_id": "C-0002",
+      "farmer_id": "F-02",
+      "workshop_id": "W-02",
+      "batch_id": "B-2026-HUASHENG-01",
+      "created_at": "2026-08-31T10:00:00+08:00",
+      "terms": {
+        "committed_quantity_kg": "1200",
+        "floor_price_per_kg": "9.80",
+        "payment_terms_days": 10,
+        "delivery_window": {"opens_on": "2026-09-18", "closes_on": "2026-10-15"},
+        "allowed_destinations": ["workshop", "alternative_buyer"],
+        "grading_rule": {
+          "moisture_threshold_pct": "10",
+          "moisture_deduction_pct_per_point": "1",
+          "impurity_threshold_pct": "2",
+          "impurity_deduction_pct_per_point": "1",
+          "bands": [
+            {"grade": "G1", "max_moisture_pct": "9", "max_impurity_pct": "1.5", "price_delta_per_kg": "0.40"},
+            {"grade": "G2", "max_moisture_pct": "10", "max_impurity_pct": "2", "price_delta_per_kg": "0"},
+            {"grade": "OFF", "max_moisture_pct": "999", "max_impurity_pct": "999", "price_delta_per_kg": "-0.80"}
+          ]
+        }
+      },
+      "consent": {
+        "farmer_id": "F-02",
+        "consented": true,
+        "at": "2026-08-31T10:00:00+08:00",
+        "channel": "纸质合同"
+      },
+      "prepayment": {"amount": "5000.00", "paid_at": "2026-09-02T09:00:00+08:00"}
+    }
+  ]
 }
