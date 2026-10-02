@@ -3,6 +3,219 @@
   "record_id": "sample-004",
   "domain": "crop_settlement",
   "occurred_at": "2026-09-20T09:00:00+08:00",
-  "revision": 1,
-  "source": "业务样例"
+  "revision": 2,
+  "source": "业务样例",
+
+  "parties": [
+    {"id": "coop-01", "type": "coop", "name": "润农种植合作社", "token": "coop-admin-token"},
+    {"id": "ws-01", "type": "workshop", "name": "万盛油坊", "token": "ws-token-01"},
+    {"id": "ws-02", "type": "workshop", "name": "鲁香坊", "token": "ws-token-02"},
+    {"id": "f-01", "type": "farmer", "name": "李长顺", "token": "f-token-01"},
+    {"id": "f-02", "type": "farmer", "name": "赵秀兰", "token": "f-token-02"}
+  ],
+
+  "stations": [
+    {"id": "st-01", "workshop_id": "ws-01", "name": "东庄收货点", "location": "东庄村部"},
+    {"id": "st-02", "workshop_id": "ws-01", "name": "西桥冷库", "location": "西桥镇"},
+    {"id": "st-03", "workshop_id": "ws-02", "name": "北关收料站", "location": "北关"}
+  ],
+
+  "plots": [
+    {"id": "plot-01", "farmer_id": "f-01", "crop": "sesame", "location": "东庄东坡", "area_mu": "4.5"},
+    {"id": "plot-02", "farmer_id": "f-01", "crop": "peanut", "location": "东庄西河", "area_mu": "6.0"},
+    {"id": "plot-03", "farmer_id": "f-02", "crop": "kernel", "location": "北关后坡", "area_mu": "3.0"}
+  ],
+
+  "batches": [
+    {"id": "batch-01", "plot_id": "plot-01", "farmer_id": "f-01", "crop": "sesame",
+     "planted_at": "2026-05-06", "harvest_expected_at": "2026-09-18", "estimated_yield_kg": "1300"},
+    {"id": "batch-02", "plot_id": "plot-02", "farmer_id": "f-01", "crop": "peanut",
+     "planted_at": "2026-05-20", "harvest_expected_at": "2026-09-25", "estimated_yield_kg": "1800"},
+    {"id": "batch-03", "plot_id": "plot-03", "farmer_id": "f-02", "crop": "kernel",
+     "planted_at": "2026-04-28", "harvest_expected_at": "2026-09-12", "estimated_yield_kg": "900"}
+  ],
+
+  "commitments": [
+    {
+      "id": "com-01", "farmer_id": "f-01", "workshop_id": "ws-01",
+      "batch_id": "batch-01", "crop": "sesame", "status": "agreed", "settled": false,
+      "versions": [
+        {
+          "version_no": 1, "status": "agreed",
+          "floor_quantity_kg": "1200",
+          "terms": {
+            "floor_price_per_kg": "12.00",
+            "grade_prices": [
+              {"grade": "A", "price_per_kg": "16.00"},
+              {"grade": "B", "price_per_kg": "13.00"},
+              {"grade": "C", "price_per_kg": "10.50"}
+            ],
+            "prepayment_amount": "6000.00",
+            "delivery_window": {"start": "2026-09-10", "end": "2026-10-10"},
+            "payment_terms_days": 7,
+            "alternate_allowed": true,
+            "alternate_handling_fee_per_kg": "0.20",
+            "notes": "中秋前分批交货，连续降雨期间可顺延至窗口末日"
+          },
+          "created_at": "2026-08-28T10:00:00+08:00", "created_by": "ws-01",
+          "change_summary": "首版条款",
+          "agreed_at": "2026-08-29T08:30:00+08:00", "agreed_by": "f-01"
+        }
+      ]
+    },
+    {
+      "id": "com-02", "farmer_id": "f-01", "workshop_id": "ws-01",
+      "batch_id": "batch-02", "crop": "peanut", "status": "agreed", "settled": false,
+      "versions": [
+        {
+          "version_no": 1, "status": "agreed",
+          "floor_quantity_kg": "1600",
+          "terms": {
+            "floor_price_per_kg": "7.00",
+            "grade_prices": [
+              {"grade": "A", "price_per_kg": "9.00"},
+              {"grade": "B", "price_per_kg": "7.50"}
+            ],
+            "prepayment_amount": "4000.00",
+            "delivery_window": {"start": "2026-09-20", "end": "2026-10-15"},
+            "payment_terms_days": 10,
+            "alternate_allowed": false,
+            "alternate_handling_fee_per_kg": "0"
+          },
+          "created_at": "2026-09-01T10:00:00+08:00", "created_by": "ws-01",
+          "change_summary": "首版条款",
+          "agreed_at": "2026-09-02T09:00:00+08:00", "agreed_by": "f-01"
+        }
+      ]
+    },
+    {
+      "id": "com-03", "farmer_id": "f-02", "workshop_id": "ws-02",
+      "batch_id": "batch-03", "crop": "kernel", "status": "agreed", "settled": false,
+      "versions": [
+        {
+          "version_no": 1, "status": "agreed",
+          "floor_quantity_kg": "800",
+          "terms": {
+            "floor_price_per_kg": "20.00",
+            "grade_prices": [
+              {"grade": "A", "price_per_kg": "24.00"},
+              {"grade": "B", "price_per_kg": "20.00"}
+            ],
+            "prepayment_amount": "5000.00",
+            "delivery_window": {"start": "2026-09-05", "end": "2026-09-30"},
+            "payment_terms_days": 7,
+            "alternate_allowed": true,
+            "alternate_handling_fee_per_kg": "0.30"
+          },
+          "created_at": "2026-08-20T10:00:00+08:00", "created_by": "ws-02",
+          "change_summary": "首版条款",
+          "agreed_at": "2026-08-21T09:00:00+08:00", "agreed_by": "f-02"
+        }
+      ]
+    }
+  ],
+
+  "advances": [
+    {"id": "adv-01", "commitment_id": "com-01", "amount": "6000.00",
+     "paid_at": "2026-08-30T14:00:00+08:00", "paid_by": "ws-01", "note": "保底预付款"},
+    {"id": "adv-02", "commitment_id": "com-03", "amount": "5000.00",
+     "paid_at": "2026-08-22T14:00:00+08:00", "paid_by": "ws-02", "note": "保底预付款"}
+  ],
+
+  "deliveries": [
+    {"id": "dlv-01", "batch_id": "batch-01", "commitment_id": "com-01",
+     "station_id": "st-01", "workshop_id": "ws-01", "farmer_id": "f-01",
+     "gross_kg": "620", "tare_kg": "20", "net_kg": "600",
+     "weighed_at": "2026-09-19T16:20:00+08:00", "weighed_by": "st-01 司磅员",
+     "ticket_no": "T20260919-01", "status": "closed"},
+    {"id": "dlv-02", "batch_id": "batch-01", "commitment_id": "com-01",
+     "station_id": "st-02", "workshop_id": "ws-01", "farmer_id": "f-01",
+     "gross_kg": "415", "tare_kg": "15", "net_kg": "400",
+     "weighed_at": "2026-09-29T11:05:00+08:00", "weighed_by": "st-02 司磅员",
+     "ticket_no": "T20260929-07", "status": "closed"}
+  ],
+
+  "samples": [
+    {"id": "smp-01", "delivery_id": "dlv-01", "sealed_code": "SEAL-0919-01",
+     "sampled_at": "2026-09-19T16:30:00+08:00", "sampled_by": "st-01 检验员"},
+    {"id": "smp-02", "delivery_id": "dlv-02", "sealed_code": "SEAL-0929-07",
+     "sampled_at": "2026-09-29T11:15:00+08:00", "sampled_by": "st-02 检验员"}
+  ],
+
+  "gradings": [
+    {"id": "grd-01", "sample_id": "smp-01", "delivery_id": "dlv-01",
+     "grade": "B", "moisture_pct": "9.2", "impurity_pct": "1.1",
+     "graded_at": "2026-09-19T17:00:00+08:00", "graded_by": "st-01 检验员",
+     "is_lab_result": false, "status": "graded"},
+    {"id": "grd-02", "sample_id": "smp-02", "delivery_id": "dlv-02",
+     "grade": "B", "moisture_pct": "9.8", "impurity_pct": "1.4",
+     "graded_at": "2026-09-29T12:00:00+08:00", "graded_by": "st-02 检验员",
+     "is_lab_result": false, "status": "corrected", "superseded_by": "grd-03",
+     "note": "站点初检，后送实验室复核"},
+    {"id": "grd-03", "sample_id": "smp-02", "delivery_id": "dlv-02",
+     "grade": "A", "moisture_pct": "8.4", "impurity_pct": "0.6",
+     "graded_at": "2026-09-30T10:30:00+08:00", "graded_by": "县粮油检测中心",
+     "is_lab_result": true, "status": "graded",
+     "note": "实验室复核：连续降雨后样品烘干达标，升为 A 级"}
+  ],
+
+  "dispositions": [
+    {"id": "dsp-01", "delivery_id": "dlv-01", "kind": "accept",
+     "quantity_kg": "550", "grade": "B",
+     "deductions": [
+       {"reason_code": "moisture_over_limit", "amount": "40.00",
+        "note": "水分 9.2% 略高于 9% 内控线，烘干折损"}
+     ],
+     "decided_at": "2026-09-19T17:20:00+08:00", "decided_by": "ws-01",
+     "note": "主体接收"},
+    {"id": "dsp-02", "delivery_id": "dlv-01", "kind": "return",
+     "quantity_kg": "50", "deductions": [],
+     "decided_at": "2026-09-19T17:20:00+08:00", "decided_by": "ws-01",
+     "note": "霉变粒超标部分当场退回农户"},
+    {"id": "dsp-03", "delivery_id": "dlv-02", "kind": "accept",
+     "quantity_kg": "360", "grade": "A", "deductions": [],
+     "decided_at": "2026-09-30T11:00:00+08:00", "decided_by": "ws-01",
+     "note": "按实验室更正后的 A 级结算"},
+    {"id": "dsp-04", "delivery_id": "dlv-02", "kind": "alternate",
+     "quantity_kg": "40", "grade": null, "deductions": [],
+     "decided_at": "2026-09-30T11:05:00+08:00", "decided_by": "ws-01",
+     "alternate_destination": "邻村王记炒货坊",
+     "farmer_consent_at": "2026-09-30T09:40:00+08:00",
+     "note": "雨后杂色粒，农户书面同意转售，工坊按 0.20 元/kg 收代办费"}
+  ],
+
+  "fm_events": [
+    {"id": "fm-01", "type": "flood", "title": "成熟期连续降雨",
+     "started_at": "2026-09-25", "ended_at": "2026-09-28",
+     "region": "东庄",
+     "evidence_refs": ["evidence/weather-20260925.pdf", "evidence/township-flood-note.jpg"],
+     "recorded_by": "coop-01", "recorded_at": "2026-09-29T08:00:00+08:00",
+     "confirmed": true}
+  ],
+
+  "negotiations": [
+    {"id": "neg-01", "commitment_id": "com-01", "fm_event_id": "fm-01",
+     "status": "agreed",
+     "opened_at": "2026-09-29T09:00:00+08:00", "opened_by": "f-01",
+     "evidence_refs": ["evidence/plot-yield-0929.jpg"],
+     "shortfall_total_kg": "200",
+     "fm_quantity_kg": "170", "nonperformance_quantity_kg": "30",
+     "advance_recovery_amount": "150.00",
+     "advance_relief_amount": "850.00",
+     "cost_share_amount": "200.00",
+     "resolution_note": "170kg 因连续降雨霉损，认定不可抗，减免对应预付 850 元；30kg 为田间管理不到位，农户退还预付 150 元；工坊另行分担烘干费用 200 元。",
+     "resolved_at": "2026-09-30T15:00:00+08:00", "resolved_by": "coop-01",
+     "farmer_agreed": true, "coop_witness": "coop-01"}
+  ],
+
+  "consumptions": [
+    {"id": "con-01", "workshop_id": "ws-01", "product_lot": "LOT-SESAME-OIL-1001",
+     "used_at": "2026-10-01T08:00:00+08:00",
+     "lines": [
+       {"batch_id": "batch-01", "delivery_id": "dlv-01", "quantity_kg": "500"},
+       {"batch_id": "batch-01", "delivery_id": "dlv-02", "quantity_kg": "200"}
+     ]}
+  ],
+
+  "appeals": []
 }
